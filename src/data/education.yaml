@@ -1,0 +1,21 @@
+# Schools. Each entry needs a unique `id`. Dates are YYYY-MM.
+# List each degree from the same school under `degrees`.
+- id: uiuc
+  school: "University of Illinois at Urbana-Champaign: Grainger College of Engineering"
+  degrees:
+    - name: Master's in Computer Science
+      end: "2026-05"
+      gpa: "4.00 / 4.00"
+    - name: B.S. in Computer Science
+      end: "2024-05"
+      gpa: "3.76 / 4.00"
+      minor: Mathematics
+  courses:
+    - Deep Learning for Healthcare
+    - Computer Security
+    - Bioinformatics
+    - Web Programming
+    - Database Systems
+    - Artificial Intelligence
+    - Applied Machine Learning
+  honors: []

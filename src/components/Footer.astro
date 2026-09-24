@@ -1,0 +1,45 @@
+---
+import { getEntry } from 'astro:content';
+
+const profile = await getEntry('profile', 'me');
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <p>© {year} {profile?.data.name}</p>
+  <ul>
+    {
+      profile?.data.links.map((l) => (
+        <li>
+          <a href={l.url} rel="noopener">{l.label}</a>
+        </li>
+      ))
+    }
+  </ul>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  p {
+    margin: 0;
+  }
+  ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    color: inherit;
+  }
+</style>

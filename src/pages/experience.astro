@@ -1,0 +1,52 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceItem from '../components/ExperienceItem.astro';
+
+const profile = (await getEntry('profile', 'me'))!.data;
+
+// Newest first; current roles (no end date) float to the top.
+const items = (await getCollection('experience')).sort(
+  (a, b) =>
+    (b.data.end ?? '9999-12').localeCompare(a.data.end ?? '9999-12') ||
+    b.data.start.localeCompare(a.data.start),
+);
+---
+
+<BaseLayout title="Experience">
+  <h1>Experience</h1>
+  <p><a href={profile.resume}>Download my resume (PDF)</a></p>
+  {items.map((item) => <ExperienceItem item={item} />)}
+
+  {
+    profile.skills.length > 0 && (
+      <section>
+        <h2>Skills</h2>
+        <ul class="skills">
+          {profile.skills.map((s) => (
+            <li>{s}</li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  section {
+    margin-top: 3rem;
+  }
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+  }
+  .skills li {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.15rem 0.7rem;
+    font-size: 0.9rem;
+  }
+</style>

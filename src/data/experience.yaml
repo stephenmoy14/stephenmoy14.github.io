@@ -1,0 +1,26 @@
+# Jobs and internships. Each entry needs a unique `id`.
+# Dates are YYYY-MM. Leave out `end` for a current role.
+- id: nextrow-digital
+  role: Software Engineer
+  org: NextRow Digital
+  location: Schaumburg, IL
+  start: "2025-01"
+  bullets:
+    - Led development of the OrgChartBuilder HubSpot integration using Java, React, PostgreSQL, and OAuth, coordinating engineering tasks across a small team and supporting 60+ customer installations.
+    - Built core OrgChartBuilder features including CRM API data synchronization, contact mapping, and a custom React diagram editor with drag-and-drop interactions, dynamic node rendering, and hierarchical data visualization.
+    - Structured and optimized PostgreSQL data models to support complex organizational hierarchies, improving query efficiency and system reliability across customer deployments.
+    - Delivered Power Platform solutions by building canvas apps in Power Apps, automated workflows in Power Automate, and Power BI dashboards that streamline organization-wide request collection, approvals, and reporting processes.
+    - Supported the KORU network request analysis platform through functional, regression, integration, and UAT testing; validated automated scan results; and identified page issues, tag failures, vendor tag compliance gaps, network request problems, and cookie-policy violations.
+    - Collaborated closely with engineering teams to verify issues and refine platform behavior, while providing actionable insights to marketing teams to strengthen prospect outreach and customer acquisition.
+    - Developed UI and backend components for Adobe's Edge Delivery Services using provided APIs for Adobe Learning Manager, implementing new features, designing and styling reusable content blocks, and optimizing project structure to improve Lighthouse scores, load performance, and maintainability.
+
+- id: iit-spark
+  role: SPARK Research Intern
+  org: "Illinois Institute of Technology: Armour College of Engineering"
+  location: Chicago, IL
+  start: "2020-06"
+  end: "2020-10"
+  bullets:
+    - Utilized Python software tool to analyze patterns in blood glucose of people with type 1 diabetes
+    - Applied advanced statistical analysis techniques to understand causes of spikes and dips in data
+    - Presented research findings in a project poster showcasing the inconclusive results of the data analysis

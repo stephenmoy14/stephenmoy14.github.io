@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Placeholder from './Placeholder.astro';
+
+interface Props {
+  item: CollectionEntry<'experience'>;
+}
+const { role, org, location, start, end, bullets, placeholder } = Astro.props.item.data;
+
+const fmt = (ym: string) =>
+  new Date(`${ym}-01T00:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+---
+
+<article>
+  <h3>
+    {role} · {org}
+    <Placeholder show={placeholder} />
+  </h3>
+  <p class="meta">
+    {fmt(start)} – {end ? fmt(end) : 'Present'}
+    {location && <span> · {location}</span>}
+  </p>
+  {
+    bullets.length > 0 && (
+      <ul>
+        {bullets.map((b) => (
+          <li>{b}</li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  article + article {
+    margin-top: 2rem;
+  }
+  h3 {
+    margin-bottom: 0.25rem;
+  }
+  .meta {
+    color: var(--muted);
+    margin-top: 0;
+  }
+</style>

@@ -1,0 +1,36 @@
+# Your basic info. The top-level key ("me") is just an ID; leave it as is.
+me:
+  name: Stephen Moy
+  # DRAFT: tagline and bio were written from your resume. Reword them in your own voice.
+  tagline: Software engineer building integrations, web apps, and internal tools.
+  bio: >-
+    I'm a software engineer at NextRow Digital, where I build CRM integrations,
+    React interfaces, and Microsoft Power Platform solutions. I studied Computer
+    Science at the University of Illinois Urbana-Champaign, earning a B.S. (with a
+    minor in Mathematics) and a Master's.
+  location: Buffalo Grove, IL
+  email: stephenmoy14@gmail.com
+  phone: (224) 381-5080
+  resume: /resume.pdf
+  links:
+    - label: GitHub
+      url: https://github.com/stephenmoy14
+    # - label: LinkedIn
+    #   url: https://www.linkedin.com/in/YOUR-HANDLE
+  skills:
+    - Microsoft Power Platform (Power Apps, Power Automate, Power BI)
+    - Python
+    - Java
+    - JavaScript
+    - React
+    - C/C++
+    - Kotlin
+    - SQL
+    - PostgreSQL
+    - MongoDB
+    - GitHub
+    - Visual Studio
+    - REST APIs
+    - API Integration
+    - Unreal Engine
+  placeholder: false

@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Placeholder from './Placeholder.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+const { project } = Astro.props;
+const { title, summary, status, tech, cover, coverAlt, placeholder } = project.data;
+const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archived: 'Archived' }[status];
+---
+
+<article class="card">
+  {cover && <Image src={cover} alt={coverAlt ?? ''} width={640} />}
+  <h3>
+    <a href={`/projects/${project.id}/`}>{title}</a>
+    <Placeholder show={placeholder} />
+  </h3>
+  <p>{summary}</p>
+  <p class="meta">
+    <span>{statusLabel}</span>
+    {tech.length > 0 && <span> · {tech.join(', ')}</span>}
+  </p>
+</article>
+
+<style>
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+  }
+  .card :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  h3 {
+    margin: 0.5rem 0;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+</style>

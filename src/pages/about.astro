@@ -1,0 +1,34 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Placeholder from '../components/Placeholder.astro';
+
+const profile = (await getEntry('profile', 'me'))!.data;
+const hobbies = (await getCollection('hobbies', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const rendered = await Promise.all(hobbies.map(async (h) => ({ h, ...(await render(h)) })));
+---
+
+<BaseLayout title="About">
+  <h1>About</h1>
+  <p>{profile.bio}</p>
+
+  {
+    rendered.length > 0 && (
+      <section>
+        <h2>Hobbies</h2>
+        {rendered.map(({ h, Content }) => (
+          <article>
+            <h3>
+              {h.data.title}
+              <Placeholder show={h.data.placeholder} />
+            </h3>
+            <p>{h.data.summary}</p>
+            <Content />
+          </article>
+        ))}
+      </section>
+    )
+  }
+</BaseLayout>

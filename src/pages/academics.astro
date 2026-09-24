@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Placeholder from '../components/Placeholder.astro';
+
+// Most recent graduation first.
+const latest = (s: { degrees: { end: string }[] }) =>
+  s.degrees.map((d) => d.end).sort().at(-1) ?? '';
+const schools = (await getCollection('education')).sort((a, b) =>
+  latest(b.data).localeCompare(latest(a.data)),
+);
+
+const fmt = (ym: string) =>
+  new Date(`${ym}-01T00:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+---
+
+<BaseLayout title="Academics">
+  <h1>Academics</h1>
+  {
+    schools.map(({ data: s }) => (
+      <article>
+        <h2>
+          {s.school}
+          <Placeholder show={s.placeholder} />
+        </h2>
+        {s.location && <p class="meta">{s.location}</p>}
+        <ul class="degrees">
+          {s.degrees.map((d) => (
+            <li>
+              <strong>{d.name}</strong>
+              {d.minor && <span>, Minor in {d.minor}</span>}
+              <br />
+              <span class="meta">
+                {d.start ? `${fmt(d.start)} – ${fmt(d.end)}` : fmt(d.end)}
+                {d.gpa && <span> · GPA {d.gpa}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+        {s.courses.length > 0 && (
+          <>
+            <h3>Relevant coursework</h3>
+            <ul>
+              {s.courses.map((c) => (
+                <li>{c}</li>
+              ))}
+            </ul>
+          </>
+        )}
+        {s.honors.length > 0 && (
+          <>
+            <h3>Honors</h3>
+            <ul>
+              {s.honors.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+          </>
+        )}
+      </article>
+    ))
+  }
+</BaseLayout>
+
+<style>
+  .meta {
+    color: var(--muted);
+  }
+  .degrees {
+    list-style: none;
+    padding: 0;
+  }
+  .degrees li + li {
+    margin-top: 0.75rem;
+  }
+</style>

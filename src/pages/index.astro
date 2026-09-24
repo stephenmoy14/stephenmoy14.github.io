@@ -1,0 +1,50 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Placeholder from '../components/Placeholder.astro';
+
+const profile = (await getEntry('profile', 'me'))!.data;
+const featured = (await getCollection('projects', ({ data }) => data.featured && !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout>
+  <section>
+    <h1>
+      {profile.name}
+      <Placeholder show={profile.placeholder} />
+    </h1>
+    <p class="tagline">{profile.tagline}</p>
+    <p>{profile.bio}</p>
+    <p><a href={profile.resume}>View my resume (PDF)</a></p>
+  </section>
+
+  {
+    featured.length > 0 && (
+      <section>
+        <h2>Featured projects</h2>
+        <div class="cards">
+          {featured.map((p) => (
+            <ProjectCard project={p} />
+          ))}
+        </div>
+        <p>
+          <a href="/projects/">See all projects →</a>
+        </p>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .tagline {
+    font-size: 1.2rem;
+    color: var(--muted);
+  }
+  .cards {
+    display: grid;
+    gap: 1rem;
+  }
+</style>

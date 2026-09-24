@@ -1,0 +1,10 @@
+# Photos shown on the Photos page.
+# 1. Strip EXIF/GPS data from the image first.
+# 2. Put the file in src/assets/photos/
+# 3. Add an entry below (unique `id`, filename, alt text required).
+#
+# - id: sunset
+#   file: sunset.jpg
+#   alt: Orange sunset over a lake with a dock in the foreground
+#   caption: Lake Michigan, summer 2026
+[]

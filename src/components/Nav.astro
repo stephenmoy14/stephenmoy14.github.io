@@ -1,0 +1,49 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/experience/', label: 'Experience' },
+  { href: '/academics/', label: 'Academics' },
+  { href: '/photos/', label: 'Photos' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<nav aria-label="Main">
+  <ul>
+    {
+      links.map((l) => (
+        <li>
+          <a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>
+            {l.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  a:hover,
+  a[aria-current='page'] {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>

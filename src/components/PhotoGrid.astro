@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Placeholder from './Placeholder.astro';
+
+interface Props {
+  photos: CollectionEntry<'photos'>[];
+}
+const { photos } = Astro.props;
+
+// Every image in src/assets/photos/, keyed by path.
+const files = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/photos/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}',
+  { eager: true },
+);
+
+const items = photos.map((p) => {
+  const mod = files[`/src/assets/photos/${p.data.file}`];
+  if (!mod) {
+    throw new Error(`photos.yaml entry "${p.id}": ${p.data.file} not found in src/assets/photos/`);
+  }
+  return { ...p.data, id: p.id, src: mod.default };
+});
+---
+
+{
+  items.length === 0 ? (
+    <p>No photos yet.</p>
+  ) : (
+    <ul class="grid">
+      {items.map((photo) => (
+        <li>
+          <figure>
+            <Image src={photo.src} alt={photo.alt} width={800} loading="lazy" />
+            {(photo.caption || photo.placeholder) && (
+              <figcaption>
+                {photo.caption}
+                <Placeholder show={photo.placeholder} />
+              </figcaption>
+            )}
+          </figure>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+  figure {
+    margin: 0;
+  }
+  figure :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+  figcaption {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.35rem;
+  }
+</style>

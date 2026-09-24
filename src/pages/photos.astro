@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhotoGrid from '../components/PhotoGrid.astro';
+
+const photos = await getCollection('photos');
+---
+
+<BaseLayout title="Photos">
+  <h1>Photos</h1>
+  <PhotoGrid photos={photos} />
+</BaseLayout>
