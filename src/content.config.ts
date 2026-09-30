@@ -1,7 +1,7 @@
 // The "rules" for every piece of content on the site.
 // If a Markdown or YAML file is missing a required field (or has a typo),
 // `npm run dev` / `npm run build` fails with a message pointing at the file.
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -111,6 +111,7 @@ const photos = defineCollection({
     file: z.string(), // filename inside src/assets/photos/
     alt: z.string().min(1, 'Every photo needs alt text'),
     caption: z.string().optional(),
+    hobby: reference('hobbies').optional(), // e.g. running -> also shows under that hobby on About
     placeholder,
   }),
 });

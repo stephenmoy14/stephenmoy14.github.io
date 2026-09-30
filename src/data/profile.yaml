@@ -15,8 +15,8 @@ me:
   links:
     - label: GitHub
       url: https://github.com/stephenmoy14
-    # - label: LinkedIn
-    #   url: https://www.linkedin.com/in/YOUR-HANDLE
+    - label: LinkedIn
+      url: https://www.linkedin.com/in/stephen-moy-uiuc
   skills:
     - Microsoft Power Platform (Power Apps, Power Automate, Power BI)
     - Python

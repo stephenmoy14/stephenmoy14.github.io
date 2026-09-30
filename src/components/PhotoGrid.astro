@@ -9,9 +9,9 @@ interface Props {
 }
 const { photos } = Astro.props;
 
-// Every image in src/assets/photos/, keyed by path.
+// Every image in src/assets/photos/ (including subfolders like iceland/), keyed by path.
 const files = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/photos/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}',
+  '/src/assets/photos/**/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}',
   { eager: true },
 );
 

@@ -1,8 +1,5 @@
 ---
 title: Example Hobby
-summary: PLACEHOLDER — one or two sentences about a hobby. Copy this file for each hobby, or delete it.
-order: 1
-placeholder: true
+summary: Not used anymore. Safe to delete this file.
+draft: true
 ---
-
-PLACEHOLDER — optional longer write-up.

@@ -2,12 +2,20 @@
 import { getCollection, getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
+import PhotoGrid from '../components/PhotoGrid.astro';
 
 const profile = (await getEntry('profile', 'me'))!.data;
+const photos = await getCollection('photos');
 const hobbies = (await getCollection('hobbies', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
 );
-const rendered = await Promise.all(hobbies.map(async (h) => ({ h, ...(await render(h)) })));
+const rendered = await Promise.all(
+  hobbies.map(async (h) => ({
+    h,
+    photos: photos.filter((p) => p.data.hobby?.id === h.id),
+    ...(await render(h)),
+  })),
+);
 ---
 
 <BaseLayout title="About">
@@ -17,8 +25,8 @@ const rendered = await Promise.all(hobbies.map(async (h) => ({ h, ...(await rend
   {
     rendered.length > 0 && (
       <section>
-        <h2>Hobbies</h2>
-        {rendered.map(({ h, Content }) => (
+        <h2>Outside of work</h2>
+        {rendered.map(({ h, photos, Content }) => (
           <article>
             <h3>
               {h.data.title}
@@ -26,9 +34,16 @@ const rendered = await Promise.all(hobbies.map(async (h) => ({ h, ...(await rend
             </h3>
             <p>{h.data.summary}</p>
             <Content />
+            {photos.length > 0 && <PhotoGrid photos={photos} />}
           </article>
         ))}
       </section>
     )
   }
 </BaseLayout>
+
+<style>
+  article + article {
+    margin-top: 2rem;
+  }
+</style>

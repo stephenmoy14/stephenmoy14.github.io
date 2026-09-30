@@ -4,9 +4,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PhotoGrid from '../components/PhotoGrid.astro';
 
 const photos = await getCollection('photos');
+const hobbies = (await getCollection('hobbies', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+// One section per hobby, then anything not tagged with a hobby.
+const sections = hobbies
+  .map((h) => ({ title: h.data.title, photos: photos.filter((p) => p.data.hobby?.id === h.id) }))
+  .filter((s) => s.photos.length > 0);
+const untagged = photos.filter((p) => !p.data.hobby);
+if (untagged.length > 0) sections.push({ title: 'Other', photos: untagged });
 ---
 
 <BaseLayout title="Photos">
   <h1>Photos</h1>
-  <PhotoGrid photos={photos} />
+  {sections.length === 0 && <p>No photos yet.</p>}
+  {
+    sections.map((s) => (
+      <section>
+        <h2>{s.title}</h2>
+        <PhotoGrid photos={s.photos} />
+      </section>
+    ))
+  }
 </BaseLayout>
