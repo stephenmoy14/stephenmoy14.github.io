@@ -3,144 +3,148 @@
 # 2. Put the file in src/assets/photos/ (subfolders like iceland/ are fine)
 # 3. Add an entry below: unique `id`, file path inside src/assets/photos/, alt text (required).
 #    `hobby` is optional: running, travel, or skiing (the hobby file's name).
-#    `caption` is optional; add place names here if you want them shown.
+#    `caption` is optional. `placeholder: true` = caption still TODO.
 
 # ---------- Iceland ----------
 - id: iceland-waterfall-and-columns
   file: iceland/waterfall-and-columns.jpg
-  alt: Stephen crouching on rocks in front of a waterfall framed by tall basalt columns
-  caption: Iceland
+  alt: "Stephen crouching on rocks in front of Svartifoss, a waterfall framed by tall basalt columns"
+  caption: "Svartifoss and its basalt columns"
   hobby: travel
 
 - id: iceland-behind-waterfall
   file: iceland/behind-waterfall.jpg
-  alt: Silhouette of Stephen standing behind a waterfall, looking out at green fields
-  caption: Iceland
+  alt: "Silhouette of Stephen standing behind Seljalandsfoss, looking out at green fields"
+  caption: "Walking behind Seljalandsfoss"
   hobby: travel
 
 - id: iceland-standing-under-waterfall
   file: iceland/standing-under-waterfall.jpg
-  alt: Stephen with his arm raised beneath a tall waterfall inside a mossy canyon
-  caption: Iceland
+  alt: "Stephen with his arm raised beneath Gljúfrabúi, a tall waterfall inside a mossy canyon"
+  caption: "Inside the canyon at Gljúfrabúi"
   hobby: travel
 
 - id: iceland-black-sand-beach-with-rocks
   file: iceland/black-sand-beach-with-rocks.jpg
-  alt: Stephen smiling on a black sand beach with sea stacks rising out of the fog behind him
-  caption: Iceland
+  alt: "Stephen smiling on Reynisfjara black sand beach with the Reynisdrangar sea stacks rising out of the fog behind him"
+  caption: "Reynisfjara and the Reynisdrangar sea stacks"
   hobby: travel
 
 - id: iceland-black-sand-beach
   file: iceland/black-sand-beach.jpg
-  alt: Stephen standing on a wide black sand beach as waves roll in under a misty sky
-  caption: Iceland
+  alt: "Stephen standing on a wide black sand beach as waves roll in under a misty sky"
+  caption: "Fog rolling in at Reynisfjara"
   hobby: travel
 
 - id: iceland-black-sand-beach-2
   file: iceland/black-sand-beach-2.jpg
-  alt: Distant figure of Stephen on a black sand beach at the edge of a foggy sea
-  caption: Iceland
+  alt: "Distant figure of Stephen on a black sand beach at the edge of a foggy sea"
+  caption: "Black sand and North Atlantic fog"
   hobby: travel
 
 - id: iceland-cliff-beach
   file: iceland/cliff-beach.jpg
-  alt: Stephen on a clifftop above a long black sand beach and crashing surf
-  caption: Iceland
+  alt: "Stephen on a clifftop above a long black sand beach and crashing surf"
+  caption: "Iceland"
   hobby: travel
+  placeholder: true # TODO: caption
 
 - id: iceland-glacier-background
   file: iceland/glacier-background.jpg
-  alt: Stephen on the shore of a glacier lagoon with a glacier and mountains behind him
-  caption: Iceland
+  alt: "Stephen on the shore of a glacier lagoon with a glacier and mountains behind him"
+  caption: "Iceland"
   hobby: travel
+  placeholder: true # TODO: caption
 
 - id: iceland-glacier-lake
   file: iceland/glacier-lake.jpg
-  alt: Stephen in front of a lagoon filled with blue icebergs
-  caption: Iceland
+  alt: "Stephen in front of Jökulsárlón, a lagoon filled with blue icebergs"
+  caption: "Icebergs at Jökulsárlón glacier lagoon"
   hobby: travel
 
 - id: iceland-glacier-view
   file: iceland/glacier-view.jpg
-  alt: Small figure of Stephen on a dark spit of land facing a glacier across a gray lagoon
-  caption: Iceland
+  alt: "Small figure of Stephen on a dark spit of land facing a glacier across a gray lagoon"
+  caption: "Iceland"
   hobby: travel
+  placeholder: true # TODO: caption
 
 - id: iceland-ice-littered-beach
   file: iceland/ice-littered-beach.jpg
-  alt: Stephen standing on a black beach scattered with chunks of glacier ice
-  caption: Iceland
+  alt: "Stephen standing on Diamond Beach, a black beach scattered with chunks of glacier ice"
+  caption: "Diamond Beach, where glacier ice washes ashore"
   hobby: travel
 
 - id: iceland-rock-formation-beach
   file: iceland/rock-formation-beach.jpg
-  alt: Stephen jumping with arms spread in shallow water beside a tall rock formation in the sea
-  caption: Iceland
+  alt: "Stephen jumping with arms spread in shallow water beside Hvítserkur, a tall rock formation in the sea"
+  caption: "Hvítserkur, the \"troll\" rock in the sea"
   hobby: travel
 
 - id: iceland-waterfall-and-river
   file: iceland/waterfall-and-river.jpg
-  alt: Stephen in front of a wide horseshoe-shaped waterfall under a partly cloudy sky
-  caption: Iceland
+  alt: "Stephen in front of Goðafoss, a wide horseshoe-shaped waterfall, under a partly cloudy sky"
+  caption: "Goðafoss, the \"waterfall of the gods\""
   hobby: travel
 
 - id: iceland-waterfall-canyon
   file: iceland/waterfall-canyon.jpg
-  alt: Stephen at a railing overlooking a deep canyon with waterfall spray rising from it
-  caption: Iceland
+  alt: "Stephen at a railing overlooking the canyon at Dettifoss, with waterfall spray rising from it"
+  caption: "Looking down the canyon at Dettifoss"
   hobby: travel
 
 - id: iceland-waterfall-side
   file: iceland/waterfall-side.jpg
-  alt: Stephen beside a powerful, churning waterfall at the edge of a canyon
-  caption: Iceland
+  alt: "Stephen beside Dettifoss, a powerful, churning waterfall at the edge of a canyon"
+  caption: "The spray at Dettifoss"
   hobby: travel
 
 - id: iceland-starwars-mountain
   file: iceland/starwars-mountain.jpg
-  alt: Stephen on a black gravel plain in front of steep, moss-green mountains
-  caption: Iceland
+  alt: "Stephen on a black sand plain in front of a steep, moss-green mountain on the path to the Katla ice cave"
+  caption: "Black sands on the path to the Katla ice cave"
   hobby: travel
 
 - id: iceland-fort-remains
   file: iceland/fort-remains.jpg
-  alt: Stephen standing among rocky lava formations with mountains in the distance
-  caption: Iceland
+  alt: "Stephen standing among rocky lava formations with mountains in the distance"
+  caption: "Iceland"
   hobby: travel
+  placeholder: true # TODO: caption
 
 - id: iceland-cliff-viewpoint
   file: iceland/cliff-viewpoint.jpg
-  alt: Stephen at a wooden viewpoint above a rocky fissure, with a lake in the distance
-  caption: Iceland
+  alt: "Stephen at a wooden viewpoint above a rocky fissure, with a lake in the distance"
+  caption: "Standing over a rift in the earth"
   hobby: travel
 
 - id: iceland-roadside-mountain-view
   file: iceland/roadside-mountain-view.jpg
-  alt: Stephen standing on a rocky ledge overlooking a green valley on a cloudy day
-  caption: Iceland
+  alt: "Stephen standing on a rocky ledge overlooking a green valley on a cloudy day"
+  caption: "Roadside stop on the Ring Road"
   hobby: travel
 
 - id: iceland-sunny-lake-view
   file: iceland/sunny-lake-view.jpg
-  alt: Stephen sitting on a boulder looking out over a sunny lake with lava rock formations
-  caption: Iceland
+  alt: "Stephen sitting on a boulder looking out over a sunny lake with lava rock formations"
+  caption: "A rare sunny day by Lake Mývatn"
   hobby: travel
 
 - id: iceland-sunny-roadside-view
   file: iceland/sunny-roadside-view.jpg
-  alt: Stephen sitting on a rock by the road, gazing across grassland toward distant flat-topped mountains
-  caption: Iceland
+  alt: "Stephen sitting on a rock by the road, gazing across grassland toward distant flat-topped mountains"
+  caption: "Taking a break on the road around Mývatn"
   hobby: travel
 
 - id: iceland-personal-close-up-volcano
   file: iceland/personal-close-up-volcano.jpg
-  alt: Close-up of Stephen in profile with blurred green hills behind him
-  caption: Iceland
+  alt: "Close-up of Stephen in profile on the path to the Katla ice cave, with blurred green hills behind him"
+  caption: "On the path to the Katla ice cave"
   hobby: travel
 
 - id: iceland-farm-sunset
   file: iceland/farm-sunset.jpg
-  alt: Stephen standing on a gravel road across open fields at sunset
-  caption: Iceland
+  alt: "Stephen standing on a gravel road across open fields at sunset"
+  caption: "Midnight-ish sunset over the farmland"
   hobby: travel
 
