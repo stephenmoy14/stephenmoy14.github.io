@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Site-wide styles: clean & minimal with a navy accent.
+   Change the look mostly by editing the variables in :root below.
+   ========================================================================== */
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f7fb; /* subtle panels and chips */
+  --text: #111827;
+  --muted: #5b6474;
+  --border: #e3e7ef;
+  --accent: #1e3a6e; /* navy */
+  --accent-hover: #152b52;
+  --accent-soft: #e9eef7; /* light navy tint for chips/badges */
+  --on-accent: #ffffff; /* text on top of the accent color */
+
+  --radius: 12px;
+  --max-width: 56rem;
+  --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c1220;
+    --surface: #121a2b;
+    --text: #e7ebf3;
+    --muted: #9aa3b3;
+    --border: #222c40;
+    --accent: #8fb3ff; /* navy reads too dark on a dark background, so lighten it */
+    --accent-hover: #b6ceff;
+    --accent-soft: #18233a;
+    --on-accent: #0c1220;
+  }
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: 1.25rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--accent-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Type ---------- */
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.025em;
+}
+h2 {
+  font-size: 1.4rem;
+  margin: 2.75rem 0 1rem;
+}
+h3 {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.35rem;
+}
+p {
+  margin: 0 0 1rem;
+}
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+.button.primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.button.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--on-accent);
+}
+.button.secondary {
+  background: transparent;
+  color: var(--accent);
+}
+.button.secondary:hover {
+  background: var(--accent-soft);
+}
+
+/* ---------- Small reusable bits ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.chips li {
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

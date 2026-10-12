@@ -9,6 +9,13 @@ const year = new Date().getFullYear();
   <p>© {year} {profile?.data.name}</p>
   <ul>
     {
+      profile?.data.email && (
+        <li>
+          <a href={`mailto:${profile.data.email}`}>Email</a>
+        </li>
+      )
+    }
+    {
       profile?.data.links.map((l) => (
         <li>
           <a href={l.url} rel="noopener">{l.label}</a>
@@ -23,9 +30,10 @@ const year = new Date().getFullYear();
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
     border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
+    padding: 1.75rem 0 2.5rem;
     color: var(--muted);
     font-size: 0.9rem;
   }
@@ -34,12 +42,16 @@ const year = new Date().getFullYear();
   }
   ul {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
   a {
     color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--accent);
   }
 </style>
