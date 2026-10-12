@@ -1,6 +1,5 @@
 ---
-// Wraps a project's Markdown write-up. The Markdown body is expected to use
-// these headings: The problem / What I built / Key decisions / What I'd change.
+// Wraps a project's Markdown write-up (use ## headings for its sections).
 // Links (repo, demo) come from the frontmatter and are shown at the bottom.
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -28,7 +27,7 @@ const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archiv
       {tech.length > 0 && <span> · {tech.join(', ')}</span>}
     </p>
 
-    {cover && <Image src={cover} alt={coverAlt ?? ''} width={1200} />}
+    {cover && <Image class="cover" src={cover} alt={coverAlt ?? ''} />}
 
     <div class="body">
       <slot />
@@ -46,7 +45,7 @@ const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archiv
             )}
             {demo && (
               <li>
-                <a href={demo} rel="noopener">Live demo</a>
+                <a href={demo} rel="noopener">Live app</a>
               </li>
             )}
           </ul>
@@ -62,5 +61,14 @@ const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archiv
   }
   .meta {
     color: var(--muted);
+  }
+  /* Phone screenshots: keep them phone-sized and centered. */
+  .cover {
+    display: block;
+    max-width: min(100%, 360px);
+    height: auto;
+    margin: 1.5rem auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
   }
 </style>

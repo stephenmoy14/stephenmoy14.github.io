@@ -28,43 +28,100 @@ const items = photos.map((p) => {
   items.length === 0 ? (
     <p>No photos yet.</p>
   ) : (
-    <ul class="grid">
-      {items.map((photo) => (
-        <li>
-          <figure>
-            <Image src={photo.src} alt={photo.alt} width={800} loading="lazy" />
-            {(photo.caption || photo.placeholder) && (
-              <figcaption>
-                {photo.caption}
-                <Placeholder show={photo.placeholder} />
-              </figcaption>
-            )}
-          </figure>
-        </li>
-      ))}
+    <ul class="gallery">
+      {items.map((photo) => {
+        const hasCaption = Boolean(photo.caption || photo.placeholder);
+        return (
+          <li>
+            <figure tabindex={hasCaption ? 0 : undefined}>
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                widths={[400, 800]}
+                sizes="(max-width: 640px) 50vw, 300px"
+                loading="lazy"
+              />
+              {hasCaption && (
+                <figcaption>
+                  {photo.caption}
+                  <Placeholder show={photo.placeholder} />
+                </figcaption>
+              )}
+            </figure>
+          </li>
+        );
+      })}
     </ul>
   )
 }
 
 <style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1rem;
+  /* Masonry-style columns: photos keep their own shape (no cropping) and pack tightly. */
+  .gallery {
+    columns: 3 220px;
+    column-gap: 6px;
     list-style: none;
+    margin: 1rem 0;
     padding: 0;
   }
-  figure {
-    margin: 0;
+  .gallery li {
+    break-inside: avoid;
+    margin-bottom: 6px;
   }
-  figure :global(img) {
-    width: 100%;
-    height: auto;
+  figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
     border-radius: 6px;
   }
+  figure :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+
+  /* Caption sits over the bottom of the photo. */
   figcaption {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-top: 0.35rem;
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 1.5rem 0.65rem 0.5rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+    color: #fff;
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+
+  /* Mouse/trackpad: caption appears on hover (or keyboard focus). */
+  @media (hover: hover) {
+    figcaption {
+      opacity: 0;
+      transform: translateY(6px);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    }
+    figure:hover figcaption,
+    figure:focus-visible figcaption {
+      opacity: 1;
+      transform: none;
+    }
+    figure:hover :global(img) {
+      transform: scale(1.03);
+    }
+  }
+  figure:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    figure :global(img),
+    figcaption {
+      transition: none;
+    }
+    figure:hover :global(img) {
+      transform: none;
+    }
   }
 </style>

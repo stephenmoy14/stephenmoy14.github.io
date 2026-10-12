@@ -42,20 +42,6 @@
   caption: "Black sand and North Atlantic fog"
   hobby: travel
 
-- id: iceland-cliff-beach
-  file: iceland/cliff-beach.jpg
-  alt: "Stephen on a clifftop above a long black sand beach and crashing surf"
-  caption: "Iceland"
-  hobby: travel
-  placeholder: true # TODO: caption
-
-- id: iceland-glacier-background
-  file: iceland/glacier-background.jpg
-  alt: "Stephen on the shore of a glacier lagoon with a glacier and mountains behind him"
-  caption: "Iceland"
-  hobby: travel
-  placeholder: true # TODO: caption
-
 - id: iceland-glacier-lake
   file: iceland/glacier-lake.jpg
   alt: "Stephen in front of Jökulsárlón, a lagoon filled with blue icebergs"
@@ -64,10 +50,9 @@
 
 - id: iceland-glacier-view
   file: iceland/glacier-view.jpg
-  alt: "Small figure of Stephen on a dark spit of land facing a glacier across a gray lagoon"
-  caption: "Iceland"
+  alt: "Small figure of Stephen on a dark spit of black sand facing Hoffellsjökull across a gray glacier lagoon"
+  caption: "Facing Hoffellsjökull across its glacier lagoon"
   hobby: travel
-  placeholder: true # TODO: caption
 
 - id: iceland-ice-littered-beach
   file: iceland/ice-littered-beach.jpg
@@ -99,19 +84,6 @@
   caption: "The spray at Dettifoss"
   hobby: travel
 
-- id: iceland-starwars-mountain
-  file: iceland/starwars-mountain.jpg
-  alt: "Stephen on a black sand plain in front of a steep, moss-green mountain on the path to the Katla ice cave"
-  caption: "Black sands on the path to the Katla ice cave"
-  hobby: travel
-
-- id: iceland-fort-remains
-  file: iceland/fort-remains.jpg
-  alt: "Stephen standing among rocky lava formations with mountains in the distance"
-  caption: "Iceland"
-  hobby: travel
-  placeholder: true # TODO: caption
-
 - id: iceland-cliff-viewpoint
   file: iceland/cliff-viewpoint.jpg
   alt: "Stephen at a wooden viewpoint above a rocky fissure, with a lake in the distance"
@@ -122,12 +94,6 @@
   file: iceland/roadside-mountain-view.jpg
   alt: "Stephen standing on a rocky ledge overlooking a green valley on a cloudy day"
   caption: "Roadside stop on the Ring Road"
-  hobby: travel
-
-- id: iceland-sunny-lake-view
-  file: iceland/sunny-lake-view.jpg
-  alt: "Stephen sitting on a boulder looking out over a sunny lake with lava rock formations"
-  caption: "A rare sunny day by Lake Mývatn"
   hobby: travel
 
 - id: iceland-sunny-roadside-view

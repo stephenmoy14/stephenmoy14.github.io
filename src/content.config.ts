@@ -22,7 +22,7 @@ const projects = defineCollection({
     z
       .object({
         title: z.string(),
-        summary: z.string().max(160, 'Keep the card summary under 160 characters'),
+        summary: z.string().max(220, 'Keep the card summary under 220 characters'),
         status: z.enum(['in-progress', 'complete', 'archived']),
         date: z.coerce.date(), // used for sorting (newest first)
         tech: z.array(z.string()).default([]),
