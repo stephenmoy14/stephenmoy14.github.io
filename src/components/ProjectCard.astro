@@ -12,7 +12,7 @@ const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archiv
 ---
 
 <article class="card">
-  {cover && <Image src={cover} alt={coverAlt ?? ''} width={640} />}
+  {cover && <Image src={cover} alt={coverAlt ?? ''} />}
   <h3>
     <a href={`/projects/${project.id}/`}>{title}</a>
     <Placeholder show={placeholder} />
@@ -30,9 +30,13 @@ const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archiv
     border-radius: 8px;
     padding: 1rem 1.25rem;
   }
+  /* Crop covers to a consistent shape; tall phone screenshots are cropped. */
   .card :global(img) {
     width: 100%;
     height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center 31%; /* tuned for the poker table screenshot */
     border-radius: 4px;
   }
   h3 {
