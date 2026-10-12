@@ -10,15 +10,20 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 
 <BaseLayout title="Projects" description="Things I've built.">
   <h1>Projects</h1>
+  <p class="lead">Things I've built.</p>
   <div class="cards">
     {projects.map((p) => <ProjectCard project={p} />)}
   </div>
 </BaseLayout>
 
 <style>
+  .lead {
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 1.25rem;
   }
 </style>

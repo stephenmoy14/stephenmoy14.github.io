@@ -11,7 +11,8 @@ me:
   location: Buffalo Grove, IL
   email: stephenmoy14@gmail.com
   phone: (224) 381-5080
-  resume: /resume.pdf
+  # Resume links are hidden until this is set. Put the PDF in public/ and uncomment:
+  # resume: /resume.pdf
   links:
     - label: GitHub
       url: https://github.com/stephenmoy14

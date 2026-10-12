@@ -12,39 +12,84 @@ const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archiv
 ---
 
 <article class="card">
-  {cover && <Image src={cover} alt={coverAlt ?? ''} />}
-  <h3>
-    <a href={`/projects/${project.id}/`}>{title}</a>
-    <Placeholder show={placeholder} />
-  </h3>
-  <p>{summary}</p>
-  <p class="meta">
-    <span>{statusLabel}</span>
-    {tech.length > 0 && <span> · {tech.join(', ')}</span>}
-  </p>
+  {cover && <Image class="cover" src={cover} alt={coverAlt ?? ''} />}
+  <div class="body">
+    <p class="status">{statusLabel}</p>
+    <h3>
+      <a href={`/projects/${project.id}/`}>{title}</a>
+      <Placeholder show={placeholder} />
+    </h3>
+    <p class="summary">{summary}</p>
+    {
+      tech.length > 0 && (
+        <ul class="chips">
+          {tech.map((t) => (
+            <li>{t}</li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
 </article>
 
 <style>
   .card {
+    position: relative; /* lets the title link cover the whole card */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease,
+      transform 0.15s ease;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px -12px rgb(15 23 42 / 0.25);
+    transform: translateY(-2px);
   }
   /* Crop covers to a consistent shape; tall phone screenshots are cropped. */
-  .card :global(img) {
+  .cover {
+    display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 10;
     object-fit: cover;
     object-position: center 31%; /* tuned for the poker table screenshot */
-    border-radius: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .body {
+    padding: 1.1rem 1.25rem 1.3rem;
+  }
+  .status {
+    margin: 0 0 0.25rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
   h3 {
-    margin: 0.5rem 0;
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
   }
-  .meta {
+  h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .card:hover h3 a {
+    color: var(--accent);
+  }
+  .summary {
     color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 0;
+    font-size: 0.97rem;
   }
 </style>

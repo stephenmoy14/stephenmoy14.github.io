@@ -62,7 +62,7 @@ const profile = defineCollection({
     location: z.string().optional(),
     email: z.string().optional(),
     phone: z.string().optional(),
-    resume: z.string(), // path under public/, e.g. /resume.pdf
+    resume: z.string().optional(), // path under public/, e.g. /resume.pdf; leave out to hide resume links
     links: z.array(link).default([]),
     skills: z.array(z.string()).default([]),
     placeholder,

@@ -1,6 +1,6 @@
 ---
 // Wraps a project's Markdown write-up (use ## headings for its sections).
-// Links (repo, demo) come from the frontmatter and are shown at the bottom.
+// Links (repo, demo) come from the frontmatter and are shown as buttons up top.
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
@@ -16,59 +16,90 @@ const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archiv
 
 <BaseLayout title={title} description={summary}>
   <article>
-    <p><a href="/projects/">← All projects</a></p>
+    <p class="back"><a href="/projects/">← All projects</a></p>
+    <p class="status">{statusLabel}</p>
     <h1>
       {title}
       <Placeholder show={placeholder} />
     </h1>
     <p class="summary">{summary}</p>
-    <p class="meta">
-      {statusLabel}
-      {tech.length > 0 && <span> · {tech.join(', ')}</span>}
-    </p>
+
+    {
+      tech.length > 0 && (
+        <ul class="chips">
+          {tech.map((t) => (
+            <li>{t}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      (repo || demo) && (
+        <div class="actions">
+          {demo && (
+            <a class="button primary" href={demo} rel="noopener">
+              Live app ↗
+            </a>
+          )}
+          {repo && (
+            <a class="button secondary" href={repo} rel="noopener">
+              Source code ↗
+            </a>
+          )}
+        </div>
+      )
+    }
 
     {cover && <Image class="cover" src={cover} alt={coverAlt ?? ''} />}
 
     <div class="body">
       <slot />
     </div>
-
-    {
-      (repo || demo) && (
-        <section>
-          <h2>Links</h2>
-          <ul>
-            {repo && (
-              <li>
-                <a href={repo} rel="noopener">Source code</a>
-              </li>
-            )}
-            {demo && (
-              <li>
-                <a href={demo} rel="noopener">Live app</a>
-              </li>
-            )}
-          </ul>
-        </section>
-      )
-    }
   </article>
 </BaseLayout>
 
 <style>
-  .summary {
-    font-size: 1.15rem;
+  article {
+    max-width: 44rem;
   }
-  .meta {
+  .back {
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+  .back a {
+    text-decoration: none;
+  }
+  .status {
+    margin-bottom: 0.4rem;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .summary {
+    font-size: 1.2rem;
+    line-height: 1.5;
     color: var(--muted);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
   }
   /* Phone screenshots: keep them phone-sized and centered. */
   .cover {
     display: block;
-    max-width: min(100%, 360px);
+    max-width: min(100%, 340px);
     height: auto;
-    margin: 1.5rem auto;
+    margin: 2.5rem auto;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px -20px rgb(15 23 42 / 0.35);
+  }
+  .body :global(h2) {
+    margin-top: 2.5rem;
   }
 </style>

@@ -11,40 +11,85 @@ const featured = (await getCollection('projects', ({ data }) => data.featured &&
 ---
 
 <BaseLayout>
-  <section>
+  <section class="hero">
+    {profile.location && <p class="eyebrow">{profile.location}</p>}
     <h1>
       {profile.name}
       <Placeholder show={profile.placeholder} />
     </h1>
     <p class="tagline">{profile.tagline}</p>
-    <p>{profile.bio}</p>
-    <p><a href={profile.resume}>View my resume (PDF)</a></p>
+    <p class="bio">{profile.bio}</p>
+    <div class="actions">
+      {profile.resume && (
+        <a class="button primary" href={profile.resume}>View resume</a>
+      )}
+      <a class={`button ${profile.resume ? 'secondary' : 'primary'}`} href="/contact/">
+        Get in touch
+      </a>
+    </div>
   </section>
 
   {
     featured.length > 0 && (
       <section>
-        <h2>Featured projects</h2>
+        <div class="section-head">
+          <h2>Featured {featured.length === 1 ? 'project' : 'projects'}</h2>
+          <a href="/projects/">All projects →</a>
+        </div>
         <div class="cards">
           {featured.map((p) => (
             <ProjectCard project={p} />
           ))}
         </div>
-        <p>
-          <a href="/projects/">See all projects →</a>
-        </p>
       </section>
     )
   }
 </BaseLayout>
 
 <style>
+  .hero {
+    padding-bottom: 1rem;
+    max-width: 42rem;
+  }
+  .eyebrow {
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
   .tagline {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    line-height: 1.45;
+    color: var(--text);
+  }
+  .bio {
     color: var(--muted);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3.5rem;
+  }
+  .section-head h2 {
+    margin: 0 0 1rem;
+  }
+  .section-head a {
+    font-size: 0.95rem;
+    text-decoration: none;
   }
   .cards {
     display: grid;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 1.25rem;
   }
 </style>
