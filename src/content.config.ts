@@ -24,6 +24,7 @@ const projects = defineCollection({
         title: z.string(),
         summary: z.string().max(220, 'Keep the card summary under 220 characters'),
         status: z.enum(['in-progress', 'complete', 'archived']),
+        kind: z.enum(['personal', 'work']).default('personal'), // work = built on the job (shown as a label)
         date: z.coerce.date(), // used for sorting (newest first)
         tech: z.array(z.string()).default([]),
         repo: z.string().optional(),
@@ -60,11 +61,22 @@ const profile = defineCollection({
     tagline: z.string(),
     bio: z.string(),
     location: z.string().optional(),
+    now: z.string().optional(), // short "Currently: ..." line on the home page
     email: z.string().optional(),
-    phone: z.string().optional(),
     resume: z.string().optional(), // path under public/, e.g. /resume.pdf; leave out to hide resume links
     links: z.array(link).default([]),
-    skills: z.array(z.string()).default([]),
+    // Skills grouped into rows, e.g. { group: Languages, items: [Python, Java] }
+    skills: z.array(z.object({ group: z.string(), items: z.array(z.string()).min(1) })).default([]),
+    certifications: z
+      .array(
+        z.object({
+          name: z.string(),
+          issuer: z.string().optional(),
+          date: month.optional(),
+          url: z.string().optional(), // e.g. a Credly/Microsoft Learn verification link
+        }),
+      )
+      .default([]),
     placeholder,
   }),
 });

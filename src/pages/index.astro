@@ -19,6 +19,11 @@ const featured = (await getCollection('projects', ({ data }) => data.featured &&
     </h1>
     <p class="tagline">{profile.tagline}</p>
     <p class="bio">{profile.bio}</p>
+    {profile.now && (
+      <p class="now">
+        <span>Currently:</span> {profile.now}
+      </p>
+    )}
     <div class="actions">
       {profile.resume && (
         <a class="button primary" href={profile.resume}>View resume</a>
@@ -66,6 +71,19 @@ const featured = (await getCollection('projects', ({ data }) => data.featured &&
   }
   .bio {
     color: var(--muted);
+  }
+  .now {
+    display: inline-block;
+    margin: 0.25rem 0 0;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .now span {
+    color: var(--accent);
+    font-weight: 600;
   }
   .actions {
     display: flex;

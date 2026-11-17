@@ -5,14 +5,14 @@
   org: NextRow Digital
   location: Schaumburg, IL
   start: "2025-01"
+  # TODO: add real numbers where marked: team size, query time before/after,
+  # Lighthouse score before/after. Don't publish the bracketed placeholders.
   bullets:
-    - Led development of the OrgChartBuilder HubSpot integration using Java, React, PostgreSQL, and OAuth, coordinating engineering tasks across a small team and supporting 60+ customer installations.
-    - Built core OrgChartBuilder features including CRM API data synchronization, contact mapping, and a custom React diagram editor with drag-and-drop interactions, dynamic node rendering, and hierarchical data visualization.
-    - Structured and optimized PostgreSQL data models to support complex organizational hierarchies, improving query efficiency and system reliability across customer deployments.
-    - Delivered Power Platform solutions by building canvas apps in Power Apps, automated workflows in Power Automate, and Power BI dashboards that streamline organization-wide request collection, approvals, and reporting processes.
-    - Supported the KORU network request analysis platform through functional, regression, integration, and UAT testing; validated automated scan results; and identified page issues, tag failures, vendor tag compliance gaps, network request problems, and cookie-policy violations.
-    - Collaborated closely with engineering teams to verify issues and refine platform behavior, while providing actionable insights to marketing teams to strengthen prospect outreach and customer acquisition.
-    - Developed UI and backend components for Adobe's Edge Delivery Services using provided APIs for Adobe Learning Manager, implementing new features, designing and styling reusable content blocks, and optimizing project structure to improve Lighthouse scores, load performance, and maintainability.
+    - Led development of OrgChartBuilder, a HubSpot integration built with Java, React, PostgreSQL, and OAuth, coordinating a small engineering team and supporting 60+ customer installations. Built its CRM data sync, contact mapping, and a custom React diagram editor with drag-and-drop and hierarchical rendering.
+    - Designed and optimized PostgreSQL data models for complex organizational hierarchies, improving query efficiency and reliability across customer deployments.
+    - Earned the Microsoft PL-900 certification within weeks to lead a client's move to Power Platform. Replaced their fully manual request intake with a Power Apps system, Power Automate approval workflows, and Power BI reporting while requirements kept changing, then ran a 6-week training program for ~10 internal and client staff so the client's team could take over at handoff.
+    - Tested the KORU network-request analysis platform (functional, regression, integration, and UAT), validating automated scans and flagging tag failures, vendor tag compliance gaps, and cookie-policy violations for engineering and marketing teams.
+    - Built UI and backend components for Adobe Edge Delivery Services using Adobe Learning Manager APIs, including reusable content blocks and a restructured project that improved Lighthouse scores and load performance.
 
 - id: iit-spark
   role: SPARK Research Intern

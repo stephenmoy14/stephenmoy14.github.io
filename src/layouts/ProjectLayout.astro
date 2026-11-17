@@ -9,7 +9,7 @@ import Placeholder from '../components/Placeholder.astro';
 interface Props {
   project: CollectionEntry<'projects'>;
 }
-const { title, summary, status, tech, repo, demo, cover, coverAlt, placeholder } =
+const { title, summary, status, kind, tech, repo, demo, cover, coverAlt, placeholder } =
   Astro.props.project.data;
 const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archived: 'Archived' }[status];
 ---
@@ -17,7 +17,7 @@ const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archiv
 <BaseLayout title={title} description={summary}>
   <article>
     <p class="back"><a href="/projects/">← All projects</a></p>
-    <p class="status">{statusLabel}</p>
+    <p class="status">{kind === 'work' ? `Work project · ${statusLabel}` : statusLabel}</p>
     <h1>
       {title}
       <Placeholder show={placeholder} />

@@ -7,14 +7,14 @@ interface Props {
   project: CollectionEntry<'projects'>;
 }
 const { project } = Astro.props;
-const { title, summary, status, tech, cover, coverAlt, placeholder } = project.data;
+const { title, summary, status, kind, tech, cover, coverAlt, placeholder } = project.data;
 const statusLabel = { 'in-progress': 'In progress', complete: 'Complete', archived: 'Archived' }[status];
 ---
 
 <article class="card">
   {cover && <Image class="cover" src={cover} alt={coverAlt ?? ''} />}
   <div class="body">
-    <p class="status">{statusLabel}</p>
+    <p class="status">{kind === 'work' ? `Work project · ${statusLabel}` : statusLabel}</p>
     <h3>
       <a href={`/projects/${project.id}/`}>{title}</a>
       <Placeholder show={placeholder} />

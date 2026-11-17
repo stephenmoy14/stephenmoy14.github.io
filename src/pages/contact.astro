@@ -3,11 +3,9 @@ import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const profile = (await getEntry('profile', 'me'))!.data;
-// "(224) 381-5080" -> "+12243815080" for the tap-to-call link
-const tel = profile.phone ? `+1${profile.phone.replace(/\D/g, '')}` : undefined;
 ---
 
-<BaseLayout title="Contact">
+<BaseLayout title="Contact" description={`How to reach ${profile.name}: email, LinkedIn, and GitHub.`}>
   <h1>Contact</h1>
   <p>The best ways to reach me:</p>
   <ul>
@@ -15,13 +13,6 @@ const tel = profile.phone ? `+1${profile.phone.replace(/\D/g, '')}` : undefined;
       profile.email && (
         <li>
           Email: <a href={`mailto:${profile.email}`}>{profile.email}</a>
-        </li>
-      )
-    }
-    {
-      profile.phone && (
-        <li>
-          Phone: <a href={`tel:${tel}`}>{profile.phone}</a>
         </li>
       )
     }

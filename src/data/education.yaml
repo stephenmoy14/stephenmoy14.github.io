@@ -3,7 +3,7 @@
 - id: uiuc
   school: "University of Illinois at Urbana-Champaign: Grainger College of Engineering"
   degrees:
-    - name: Master's in Computer Science
+    - name: Master of Computer Science
       end: "2026-05"
       gpa: "4.00 / 4.00"
     - name: B.S. in Computer Science
@@ -11,11 +11,18 @@
       gpa: "3.76 / 4.00"
       minor: Mathematics
   courses:
-    - Deep Learning for Healthcare
-    - Computer Security
-    - Bioinformatics
-    - Web Programming
+    - Algorithms & Models of Computation
+    - Data Structures
+    - System Programming
+    - Parallel Programming
+    - Programming Languages & Compilers
+    - Computer Architecture
     - Database Systems
+    - Web Programming
+    - Computer Security
     - Artificial Intelligence
     - Applied Machine Learning
+    - Deep Learning for Healthcare
+    - Bioinformatics
+  # TODO: add honors if any (e.g. Dean's List semesters). The section stays hidden while empty.
   honors: []

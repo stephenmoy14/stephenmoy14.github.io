@@ -8,7 +8,10 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 );
 ---
 
-<BaseLayout title="Projects" description="Things I've built.">
+<BaseLayout
+  title="Projects"
+  description="Projects by Stephen Moy: full-stack web apps and integrations, with the decisions and trade-offs behind them."
+>
   <h1>Projects</h1>
   <p class="lead">Things I've built.</p>
   <div class="cards">
