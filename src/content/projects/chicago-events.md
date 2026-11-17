@@ -1,43 +1,39 @@
 ---
 title: Chicago Events
-summary: A site that pulls Chicago events from several sources into one list, drops outdated listings, and focuses on what's happening in the next month.
+summary: What can I do in Chicago in the next 30 days? A daily pipeline pulls events from four sources, merges duplicates and hides anything that's over, and a mobile-first site lets you filter what's left.
 status: in-progress
-kind: personal
 date: 2026-11-01
-# TODO: confirm the tech list matches the real stack.
-tech: [TypeScript, Next.js, Supabase, GitHub Actions, Vercel]
+tech: [Python, Next.js, TypeScript, PostgreSQL, Supabase, GitHub Actions, Vercel]
 repo: https://github.com/stephenmoy14/events-app
 demo: https://events-app-chicago.vercel.app/
 # TODO: add a cover screenshot, then uncomment:
 # cover: ../../assets/projects/chicago-events.png
-# coverAlt: Chicago Events showing ...
-featured: false # set to true once the write-up and screenshot are done
-placeholder: true # remove once you've reviewed this write-up
+# coverAlt: Chicago Events on a phone, showing ...
+featured: true
 ---
 
 ## Problem
 
-Things to do in Chicago are spread across Eventbrite, venue calendars and the city's own events page, and a lot of what turns up in search is already over. I wanted one place to see what I could actually go to in the next month.
+Finding things to do in Chicago means checking a handful of sites that each list only part of what's on, often with the same event posted twice and old events left up. I wanted one place that answers a simple question: what can I do in the next month?
 
 ## What I built
 
-Scrapers collect events from the Eventbrite API, local venue calendars and the city's events page. The site combines them into one list, removes duplicates of the same event from different sources, and filters out anything that has already happened.
+Every morning a pipeline pulls upcoming events from Ticketmaster, Eventbrite, the Chicago Public Library and Choose Chicago. It cleans them into one shared format, merges the same event when it shows up on more than one site, sorts everything into 12 categories, and works out the neighborhood from each event's location. Events that have ended, or that drop off their source, are hidden automatically.
 
-<!-- TODO: add an architecture diagram, e.g. ![Chicago Events architecture](../../assets/projects/chicago-events-architecture.svg) -->
+The website shows one day at a time with a day strip and a month calendar, and you can filter by date range, category, price, time of day, neighborhood or keyword. Every filter lives in the URL, so any view can be bookmarked or shared, and the filters work even without JavaScript.
 
 ## Key decisions & trade-offs
 
-- **My own scrapers on GitHub Actions.** Scheduled workflows keep the cost close to zero. A paid scraping service (Apify) stays as a backup only if a source gets hard to scrape.
-- **Only sources worth the cost.** I dropped Meetup because its API needs a paid Pro plan, and I'm checking other sources one by one before adding them.
-- **Starting with one city.** Keeping it to Chicago let me focus on very local sources first.
+The pipeline is Python, run on a daily GitHub Actions schedule. Each source is a small fetcher that returns the same event model, so adding a source never touches the database or the website, and a new WordPress or library site only needs a few lines of config. Fetchers use the JSON feeds the sites' own pages load rather than scraping HTML, wait between requests, and follow each site's robots.txt and terms. I skipped a source whose terms forbid scraping.
 
-<!-- TODO: add how duplicates are matched across sources, a good interview talking point. -->
+Duplicates are matched on title, start time (within 30 minutes) and venue, using Chicago dates so evening shows don't split across days. They're hidden, never deleted, and recomputed every run, so a wrong match fixes itself when the rules improve. Neighborhoods come from a point-in-polygon check against the city's 77 community areas, in plain Python with no extra database extension.
+
+Each run logs per-source results, retries timeouts and rate limits with backoff, and fails loudly after three failures in a row. Events are stored in Postgres on Supabase with row-level security, and the Next.js site on Vercel reads them server-side.
 
 ## How I tested it
 
-<!-- TODO: describe tests, e.g. fixtures of saved pages for each scraper, dedup test cases. -->
-Coming soon.
+Parser tests run against saved responses from each source, and every push typechecks and builds the site.
 
 ## What I'd do next
 
-Sign-in and saved events, then more Chicago sources.
+I'm finishing email sign-in so people can save events and set default filters, then adding more sources, starting with the Chicago Park District.
