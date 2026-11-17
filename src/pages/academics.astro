@@ -14,7 +14,10 @@ const fmt = (ym: string) =>
   new Date(`${ym}-01T00:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 ---
 
-<BaseLayout title="Academics">
+<BaseLayout
+  title="Academics"
+  description="Stephen Moy's education: B.S. in Computer Science and a Master of Computer Science from the University of Illinois Urbana-Champaign."
+>
   <h1>Academics</h1>
   {
     schools.map(({ data: s }) => (

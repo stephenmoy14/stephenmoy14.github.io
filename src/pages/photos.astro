@@ -16,7 +16,10 @@ const untagged = photos.filter((p) => !p.data.hobby);
 if (untagged.length > 0) sections.push({ title: 'Other', photos: untagged });
 ---
 
-<BaseLayout title="Photos">
+<BaseLayout
+  title="Photos"
+  description="Photos from Stephen Moy's travels, including a week on Iceland's Ring Road."
+>
   <h1>Photos</h1>
   {sections.length === 0 && <p>No photos yet.</p>}
   {

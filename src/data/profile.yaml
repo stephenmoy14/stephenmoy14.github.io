@@ -2,36 +2,42 @@
 me:
   name: Stephen Moy
   # DRAFT: tagline and bio were written from your resume. Reword them in your own voice.
+  # Suggested direction: lead with proof, e.g.
+  #   "I build integrations and full-stack web apps, from a HubSpot app with 60+ installs
+  #    to a live Chicago events site."
   tagline: Software engineer building integrations, web apps, and internal tools.
   bio: >-
     I'm a software engineer at NextRow Digital, where I build CRM integrations,
     React interfaces, and Microsoft Power Platform solutions. I studied Computer
     Science at the University of Illinois Urbana-Champaign, earning a B.S. (with a
-    minor in Mathematics) and a Master's.
+    minor in Mathematics) and a Master of Computer Science.
+  # Optional one-liner shown on the home page under the bio. Delete the line to hide it.
+  now: Adding sign-in and saved events to Chicago Events.
   location: Buffalo Grove, IL
   email: stephenmoy14@gmail.com
-  phone: (224) 381-5080
-  # Resume links are hidden until this is set. Put the PDF in public/ and uncomment:
-  # resume: /resume.pdf
+  # Resume links are hidden when this is removed. Keep the public copy free of your phone number.
+  resume: /resume.pdf
   links:
     - label: GitHub
       url: https://github.com/stephenmoy14
     - label: LinkedIn
       url: https://www.linkedin.com/in/stephen-moy-uiuc
+  # Grouped skills, shown as one row of chips per group on the Experience page.
   skills:
-    - Microsoft Power Platform (Power Apps, Power Automate, Power BI)
-    - Python
-    - Java
-    - JavaScript
-    - React
-    - C/C++
-    - Kotlin
-    - SQL
-    - PostgreSQL
-    - MongoDB
-    - GitHub
-    - Visual Studio
-    - REST APIs
-    - API Integration
-    - Unreal Engine
+    - group: Languages
+      items: [TypeScript, JavaScript, Java, Python, SQL, C/C++]
+    - group: Frameworks
+      items: [React, Next.js, Astro]
+    - group: Data & Infra
+      items: [PostgreSQL, Supabase, MongoDB, GitHub Actions, Vercel]
+    - group: Other
+      items:
+        - Microsoft Power Platform (Power Apps, Power Automate, Power BI)
+        - REST APIs & API integration
+        - Git & GitHub
+        - Visual Studio
+  certifications:
+    - name: "Microsoft Certified: Power Platform Fundamentals (PL-900)"
+      issuer: Microsoft
+      # date: "2025-06"   # YYYY-MM, optional
   placeholder: false

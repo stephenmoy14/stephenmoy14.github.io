@@ -4,6 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
 
 const profile = (await getEntry('profile', 'me'))!.data;
+const fmt = (ym: string) =>
+  new Date(`${ym}-01T00:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 
 // Newest first; current roles (no end date) float to the top.
 const items = (await getCollection('experience')).sort(
@@ -13,7 +15,10 @@ const items = (await getCollection('experience')).sort(
 );
 ---
 
-<BaseLayout title="Experience">
+<BaseLayout
+  title="Experience"
+  description="Stephen Moy's software engineering experience, skills, and certifications."
+>
   <h1>Experience</h1>
   {
     profile.resume && (
@@ -27,14 +32,44 @@ const items = (await getCollection('experience')).sort(
   </div>
 
   {
+    profile.certifications.length > 0 && (
+      <section>
+        <h2>Certifications</h2>
+        <ul class="certs">
+          {profile.certifications.map((c) => (
+            <li>
+              {c.url ? <a href={c.url} rel="noopener">{c.name}</a> : <strong>{c.name}</strong>}
+              {(c.issuer || c.date) && (
+                <span class="muted">
+                  {' · '}
+                  {[c.issuer, c.date && fmt(c.date)].filter(Boolean).join(', ')}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
     profile.skills.length > 0 && (
       <section>
         <h2>Skills</h2>
-        <ul class="chips">
-          {profile.skills.map((s) => (
-            <li>{s}</li>
+        <dl class="skills">
+          {profile.skills.map(({ group, items }) => (
+            <div>
+              <dt>{group}</dt>
+              <dd>
+                <ul class="chips">
+                  {items.map((s) => (
+                    <li>{s}</li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </section>
     )
   }
@@ -49,5 +84,39 @@ const items = (await getCollection('experience')).sort(
   }
   section {
     margin-top: 3rem;
+  }
+  .certs {
+    padding-left: 1.1rem;
+  }
+  .muted {
+    color: var(--muted);
+  }
+  .skills {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+  }
+  .skills div {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 0.25rem 1rem;
+    align-items: start;
+  }
+  .skills dt {
+    padding-top: 0.3rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .skills dd {
+    margin: 0;
+  }
+  .skills .chips {
+    margin: 0;
+  }
+  @media (max-width: 30rem) {
+    .skills div {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
